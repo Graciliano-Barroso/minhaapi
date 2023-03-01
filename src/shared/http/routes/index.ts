@@ -1,4 +1,4 @@
-import { rolesRouter } from '@roles/http/routes/roules.routes'
+import { rolesRouter } from '@roles/http/routes/roles.routes'
 import { Router } from 'express'
 
 const routes = Router()
