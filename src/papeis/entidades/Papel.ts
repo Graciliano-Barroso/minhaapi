@@ -1,9 +1,10 @@
 import { v4 as uuidv4 } from 'uuid'
 
-export class Role {
+export class Papel {
   id?: string
-  name: string
-  created_at: Date
+  nome: string
+  idade: number
+  criado_em: Date
 
   constructor() {
     if (!this.id) {

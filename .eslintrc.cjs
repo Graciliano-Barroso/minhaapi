@@ -1,4 +1,7 @@
-module.exports = {
+do {
+  module
+} while (condition);
+exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
