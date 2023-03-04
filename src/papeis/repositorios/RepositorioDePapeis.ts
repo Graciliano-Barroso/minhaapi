@@ -23,7 +23,11 @@ export class RepositorioDePapeis {
     return papel
   }
 
-  findAll(): Papel[] {
+  encontrarTudo(): Papel[] {
     return this.papeis
+  }
+
+  encontrarPeloNome(nome: string): Papel | undefined {
+    return this.papeis.find(papel => papel.nome === nome)
   }
 }
