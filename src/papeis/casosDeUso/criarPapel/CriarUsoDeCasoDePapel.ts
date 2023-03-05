@@ -13,6 +13,6 @@ export class CriarUsoDeCasoDePapel {
     const papelJaExiste = this.repositorioDePapeis.encontrarPeloNome(nome)
     if (papelJaExiste) {
       throw new ErroDeAplicativo('O papel ja existe')}
-    return this.repositorioDePapeis.create({nome, idade})
+    return this.repositorioDePapeis.criar({nome, idade})
   }
 }

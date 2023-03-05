@@ -10,7 +10,7 @@ export class RepositorioDePapeis {
   constructor() {
     this.papeis = []
   }
-  create({ nome, idade }: CriarPapelDTO): Papel {
+  criar({ nome, idade }: CriarPapelDTO): Papel {
     const papel = new Papel()
 
     Object.assign(papel, {
