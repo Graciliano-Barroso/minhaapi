@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Documentação da minha API",
+    "description": "Documentação da Minha API com todas as especificações",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Graciliano Barroso",
+      "email": "gracilianobm@hotmail.com"
+    }
+  }
+}
