@@ -12,17 +12,17 @@ app.use(express.json())
 app.use(rotas)
 
 app.use(
-  (error: Error, request: Request, response: Response, next: NextFunction) => {
-    if (error instanceof ErroDeAplicativo) {
-      return response.status(error.codigoDeStatus).json({
-        status: 'erro',
-        message: error.message,
+  (erro: Error, request: Request, response: Response, next: NextFunction) => {
+    if (erro instanceof ErroDeAplicativo) {
+      return response.status(erro.codigoDeStatus).json({
+        estado: 'erro',
+        mensagem: erro.mensagem,
       })
     }
-    console.log(error)
+    console.log(erro)
     return response.status(500).json({
-      status: 'erro',
-      message: 'Erro interno do servidor',
+      estado: 'erro',
+      mensagem: 'Erro interno do servidor',
     })
   },
 )

@@ -8,7 +8,7 @@ export class CriarControladorDePapeis {
 
   executar(request: Request, response: Response): Response {
     const { nome, idade } = request.body
-    const papel = this.criarUsoDeCasoDePapel.execute(nome, idade)
+    const papel = this.criarUsoDeCasoDePapel.execute({nome, idade})
     return response.status(201).json(papel)
     }
 }
