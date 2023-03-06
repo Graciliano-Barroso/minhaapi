@@ -6,9 +6,17 @@ type CriarPapelDTO = {
 }
 export class RepositorioDePapeis {
   private papeis: Papel[]
+  private static INSTANCIA: RepositorioDePapeis
 
-  constructor() {
+  private constructor() {
     this.papeis = []
+  }
+
+  public static obterInstancia(): RepositorioDePapeis {
+    if (!RepositorioDePapeis.INSTANCIA) {
+      RepositorioDePapeis.INSTANCIA = new RepositorioDePapeis()
+    }
+    return RepositorioDePapeis.INSTANCIA
   }
   criar({ nome, idade }: CriarPapelDTO): Papel {
     const papel = new Papel()
