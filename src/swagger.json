@@ -8,5 +8,49 @@
       "name": "Graciliano Barroso",
       "email": "gracilianobm@hotmail.com"
     }
+  },
+  "paths":{
+    "/roles": {
+      "post": {
+        "tags": ["Papel"],
+        "summary": "Criar um Papel",
+        "description": "Criar um novo papel",
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "idade": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Papel criado."
+          },
+          "400": {
+            "description": "O papel já existe."
+          }
+        }
+      },
+      "get": {
+        "tags": ["Papel"],
+        "summary": "Lista de todos os papeis",
+        "description": "Retorna todas as funções paginadas",
+        "responses": {
+          "200": {
+            "description": "Sucesso."
+          }
+        }
+      }
+    }
   }
 }
