@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { ListarPapeisDeCasoDeUso } from "./ListarPapeisDeCasoDeUso";
+import { Request, Response } from 'express'
+import { ListarPapeisDeCasoDeUso } from './ListarPapeisDeCasoDeUso'
 
 export class ListarPapeisDoControlador {
   constructor(private listarPapeisDeCasoDeUso: ListarPapeisDeCasoDeUso) {}

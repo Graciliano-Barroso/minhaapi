@@ -1,6 +1,6 @@
-import { ErroDeAplicativo } from "@compartilhado/erros/ErroDeAplicativo"
-import { Papel } from "@papeis/entidades/Papel"
-import { RepositorioDePapeis } from "@papeis/repositorios/RepositorioDePapeis"
+import { ErroDeAplicativo } from '@compartilhado/erros/ErroDeAplicativo'
+import { Papel } from '@papeis/entidades/Papel'
+import { RepositorioDePapeis } from '@papeis/repositorios/RepositorioDePapeis'
 
 type CriarPapelDTO = {
   nome: string
@@ -9,10 +9,11 @@ type CriarPapelDTO = {
 
 export class CriarUsoDeCasoDePapel {
   constructor(private repositorioDePapeis: RepositorioDePapeis) {}
-  execute({nome, idade}: CriarPapelDTO): Papel {
+  execute({ nome, idade }: CriarPapelDTO): Papel {
     const papelJaExiste = this.repositorioDePapeis.encontrarPeloNome(nome)
     if (papelJaExiste) {
-      throw new ErroDeAplicativo('O papel ja existe')}
-    return this.repositorioDePapeis.criar({nome, idade})
+      throw new ErroDeAplicativo('O papel ja existe')
+    }
+    return this.repositorioDePapeis.criar({ nome, idade })
   }
 }
