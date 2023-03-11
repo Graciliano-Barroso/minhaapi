@@ -9,8 +9,8 @@ type CriarPapelDTO = {
 
 export class CriarUsoDeCasoDePapel {
   constructor(private repositorioDePapeis: RepositorioDePapeis) {}
-  execute({ nome, idade }: CriarPapelDTO): Papel {
-    const papelJaExiste = this.repositorioDePapeis.encontrarPeloNome(nome)
+  async execute({ nome, idade }: CriarPapelDTO): Promise<Papel> {
+    const papelJaExiste = await this.repositorioDePapeis.encontrarPeloNome(nome)
     if (papelJaExiste) {
       throw new ErroDeAplicativo('O papel ja existe')
     }

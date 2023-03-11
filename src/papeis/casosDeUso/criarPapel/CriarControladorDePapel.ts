@@ -6,9 +6,9 @@ import { CriarUsoDeCasoDePapel } from './CriarUsoDeCasoDePapel'
 export class CriarControladorDePapeis {
   constructor(private criarUsoDeCasoDePapel: CriarUsoDeCasoDePapel) {}
 
-  executar(request: Request, response: Response): Response {
+  async executar(request: Request, response: Response): Promise<Response> {
     const { nome, idade } = request.body
-    const papel = this.criarUsoDeCasoDePapel.execute({ nome, idade })
+    const papel = await this.criarUsoDeCasoDePapel.execute({ nome, idade })
     return response.status(201).json(papel)
   }
 }
