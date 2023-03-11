@@ -1,6 +1,6 @@
 import { RepositorioDePapeis } from '@papeis/repositorios/RepositorioDePapeis'
 import { CriarControladorDePapeis } from './CriarControladorDePapel'
-import { CriarUsoDeCasoDePapel } from './CriarUsoDeCasoDePapel'
+import { CriarUsoDeCasoDePapel } from './CriarCasoDeUsoDePapel'
 
 const repositorioDePapeis = RepositorioDePapeis.obterInstancia()
 const criarUsoDeCasoDePapel = new CriarUsoDeCasoDePapel(repositorioDePapeis)

@@ -1,7 +1,5 @@
-import { ErroDeAplicativo } from '@compartilhado/erros/ErroDeAplicativo'
-import { RepositorioDePapeis } from '@papeis/repositorios/RepositorioDePapeis'
 import { Request, Response } from 'express'
-import { CriarUsoDeCasoDePapel } from './CriarUsoDeCasoDePapel'
+import { CriarUsoDeCasoDePapel } from './CriarCasoDeUsoDePapel'
 
 export class CriarControladorDePapeis {
   constructor(private criarUsoDeCasoDePapel: CriarUsoDeCasoDePapel) {}
