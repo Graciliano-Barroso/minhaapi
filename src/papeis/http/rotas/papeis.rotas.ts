@@ -1,7 +1,7 @@
 import { atualizarPapelDoControlador } from './../../casosDeUso/atualizarPapel/indice'
 import { criarControladorDePapeis } from '@papeis/casosDeUso/criarPapel/indice'
 import { listarPapeisDoControlador } from '@papeis/casosDeUso/listarPapeis/indice'
-import { controladorMostrarPapel } from '@papeis/casosDeUso/mostrarPapel/indice'
+import { controladorMostrarPapel } from '@papeis/casosDeUso/exibirPapel/indice'
 import { Router } from 'express'
 
 const papeisDoRoteador = Router()
