@@ -66,9 +66,56 @@
         "tags": ["Papel"],
         "summary": "Lista de todos os papeis",
         "description": "Retorna todas as funções paginadas",
+        "parameters": [
+          {
+            "name": "página",
+            "in": "consulta",
+            "description": "Número da página",
+            "required": false,
+            "schema": {
+              "type": "número",
+              "example": "página=1"
+            },
+            "style": "rótulo"
+          },
+          {
+            "name": "limite",
+            "in": "consulta",
+            "description": "Número de registros por página",
+            "required": false,
+            "schema": {
+              "type": "número",
+              "example": "limite=15"
+            },
+            "style": "rótulo"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Sucesso."
+            "description": "Sucesso.",
+            "content": {
+              "aplication/json": {
+                "example": {
+                  "por_pagina": 15,
+                  "total": 2,
+                  "pagina_atual": 1,
+                  "dados": [
+                    {
+                      "id": "c45da3e7-33f3-4725-bb11-b1047b4548fe",
+                      "nome": "Graciliano B Moraes",
+                      "idade": 42,
+                      "criado_em": "2023-03-13T16:47:29.000Z"
+                    },
+                    {
+                      "id": "d7d393ae-154a-47e6-b3d4-a177184e24d6",
+                      "nome": "Graciliano Barroso",
+                      "idade": 42,
+                      "criado_em": "2023-03-13T16:47:39.000Z"
+                    }
+                  ]
+                }
+              }
+            }
           }
         }
       }
