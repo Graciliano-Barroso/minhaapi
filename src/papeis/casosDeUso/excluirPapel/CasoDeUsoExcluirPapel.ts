@@ -1,5 +1,4 @@
 import { ErroDeAplicativo } from '@compartilhado/erros/ErroDeAplicativo'
-import { Papel } from '@papeis/entidades/Papel'
 import { RepositorioDePapeis } from '@papeis/repositorios/RepositorioDePapeis'
 
 type ParametrosExcluirPapel = {

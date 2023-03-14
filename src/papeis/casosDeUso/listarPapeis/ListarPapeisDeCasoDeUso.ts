@@ -12,8 +12,8 @@ export class ListarPapeisDeCasoDeUso {
   constructor(private repositorioDePapeis: RepositorioDePapeis) {}
 
   async execute({
-    pagina,
     limite,
+    pagina,
   }: ParametrosDeListaDePapeisDeCasoDeUso): Promise<PropriedadesDePaginacaoDePapeis> {
     const pegar = limite
     const pular = (Number(pagina) - 1) * pegar
