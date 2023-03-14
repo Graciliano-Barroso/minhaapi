@@ -34,7 +34,28 @@
         },
         "responses": {
           "201": {
-            "description": "Papel criado."
+            "description": "Papel criado.",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "idade": {
+                      "type": "number"
+                    },
+                    "criado_em": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "O papel já existe."
