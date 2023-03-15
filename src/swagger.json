@@ -12,7 +12,7 @@
   "paths":{
     "/roles": {
       "post": {
-        "tags": ["Papel"],
+        "tags": ["Papeis"],
         "summary": "Criar um Papel",
         "description": "Criar um novo papel",
         "requestBody": {
@@ -63,7 +63,7 @@
         }
       },
       "get": {
-        "tags": ["Papel"],
+        "tags": ["Papeis"],
         "summary": "Lista de todos os papeis",
         "description": "Retorna todas as funções paginadas",
         "parameters": [
@@ -116,6 +116,75 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/roles/{id}": {
+      "put": {
+        "tags": ["Papeis"],
+        "summary": "Atualizar um papel",
+        "description": "Atualizar um papel.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "caminho",
+            "description": "Identificar um papel",
+            "required": true,
+            "schema": {
+              "type": "cadeia de caracteres"
+            },
+            "style": "rótulo"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type":"string"
+                  },
+                  "idade": {
+                    "type":"number"
+                  }
+                },
+                "example": "Administrador"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso.",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "idade": {
+                      "type": "number"
+                    },
+                    "criado_em": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "Papel não encontrado."
           }
         }
       }
