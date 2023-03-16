@@ -76,7 +76,7 @@
               "type": "número",
               "example": "página=1"
             },
-            "style": "rótulo"
+            "style": "label"
           },
           {
             "name": "limite",
@@ -176,11 +176,70 @@
                       "type": "string"
                     }
                   }
+                },
+                "example": {
+                  "id": "74c8f2c7-5d9d-4c80-872c-c4f619fe6e78",
+                  "name": "Administrador",
+                  "created_at": "2022-07-16T14:10:48.000Z"
                 }
               }
             }
           },
           "400": {
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "Papel não encontrado."
+          }
+        }
+      },
+      "get": {
+        "tags": ["Papeis"],
+        "summary": "Encontrar papel por ID",
+        "description": "Retorna papeis com base no ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "caminho",
+            "description": "Identificação de um papel",
+            "required": true,
+            "schema":{
+              "type":"cadeia de caracteres"
+            },
+            "style": "label"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "id":{
+                      "type":"string"
+                    },
+                    "nome":{
+                      "type":"string"
+                    },
+                    "idade":{
+                      "type":"number"
+                    },
+                    "created_at":{
+                      "type":"string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "74c8f2c7-5d9d-4c80-872c-c4f619fe6e78",
+                  "name": "Administrador",
+                  "created_at": "2022-07-16T14:10:48.000Z"
+                }
+              }
+            }
+          },
+          "400":{
             "description": "Requisição inválida."
           },
           "404": {
