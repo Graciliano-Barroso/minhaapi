@@ -246,6 +246,34 @@
             "description": "Papel não encontrado."
           }
         }
+      },
+      "delete": {
+        "tags": ["Papeis"],
+        "summary": "Excluir papel por ID",
+        "description": "Excluir papeis com base no ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "caminho",
+            "description": "Identificação de um papel",
+            "required": true,
+            "schema":{
+              "type":"cadeia de caracteres"
+            },
+            "style": "label"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Sem conteúdo."
+          },
+          "400":{
+            "description": "Requisição inválida."
+          },
+          "404": {
+            "description": "Papel não encontrado."
+          }
+        }
       }
     }
   }
