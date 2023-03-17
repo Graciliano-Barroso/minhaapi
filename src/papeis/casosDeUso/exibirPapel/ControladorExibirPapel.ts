@@ -1,12 +1,12 @@
 import { Request, Response } from 'express'
+import { container } from 'tsyringe'
 import { CasoDeUsoDeExibirPapel } from './CasoDeUsoExibirPapel'
 
 export class ControladorExibirPapel {
-  constructor(private casoDeUsoDeExibirPapel: CasoDeUsoDeExibirPapel) {}
-
   async executar(request: Request, response: Response): Promise<Response> {
+    const casoDeUsoDeExibirPapel = container.resolve(CasoDeUsoDeExibirPapel)
     const { id } = request.body
-    const papel = await this.casoDeUsoDeExibirPapel.execute({ id })
+    const papel = await casoDeUsoDeExibirPapel.execute({ id })
     return response.status(200).json(papel)
   }
 }

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express'
+import { container } from 'tsyringe'
 import { ListarPapeisDeCasoDeUso } from './ListarPapeisDeCasoDeUso'
 
 export class ListarPapeisDoControlador {
-  constructor(private listarPapeisDeCasoDeUso: ListarPapeisDeCasoDeUso) {}
-
   async executar(request: Request, response: Response): Promise<Response> {
+    const listarPapeisDeCasoDeUso = container.resolve(ListarPapeisDeCasoDeUso)
     const pagina =
       request.query.page && Number(request.query.page) > 0
         ? Number(request.query.page)
@@ -13,7 +13,7 @@ export class ListarPapeisDoControlador {
       request.query.limit && Number(request.query.limit) > 0
         ? Number(request.query.limit)
         : 15
-    const papeis = await this.listarPapeisDeCasoDeUso.execute({
+    const papeis = await listarPapeisDeCasoDeUso.execute({
       pagina,
       limite,
     })

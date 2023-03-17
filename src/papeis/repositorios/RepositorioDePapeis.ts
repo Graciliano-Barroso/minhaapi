@@ -1,39 +1,20 @@
 import { dataSource } from '@compartilhado/typeorm/indice'
 import { Papel } from '@papeis/entidades/Papel'
 import { Repository } from 'typeorm'
+import {
+  CriarPapelDTO,
+  IRepositorioDePapeis,
+  PaginarParametros,
+  PropriedadesDePaginacaoDePapeis,
+} from './IRepositorioDePapeis'
 
-type CriarPapelDTO = {
-  nome: string
-  idade: number
-}
-
-export type PaginarParametros = {
-  pagina: number
-  pular: number
-  pegar: number
-}
-
-export type PropriedadesDePaginacaoDePapeis = {
-  por_pagina: number
-  total: number
-  pagina_atual: number
-  dados: Papel[]
-}
-
-export class RepositorioDePapeis {
+export class RepositorioDePapeis implements IRepositorioDePapeis {
   private repositorio: Repository<Papel>
-  private static INSTANCIA: RepositorioDePapeis
 
-  private constructor() {
+  constructor() {
     this.repositorio = dataSource.getRepository(Papel)
   }
 
-  public static obterInstancia(): RepositorioDePapeis {
-    if (!RepositorioDePapeis.INSTANCIA) {
-      RepositorioDePapeis.INSTANCIA = new RepositorioDePapeis()
-    }
-    return RepositorioDePapeis.INSTANCIA
-  }
   async criar({ nome, idade }: CriarPapelDTO): Promise<Papel> {
     const papel = this.repositorio.create({ nome, idade })
     return this.repositorio.save(papel)

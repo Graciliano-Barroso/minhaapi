@@ -1,14 +1,18 @@
 import { ErroDeAplicativo } from '@compartilhado/erros/ErroDeAplicativo'
 import { Papel } from '@papeis/entidades/Papel'
-import { RepositorioDePapeis } from '@papeis/repositorios/RepositorioDePapeis'
+import { IRepositorioDePapeis } from '@papeis/repositorios/IRepositorioDePapeis'
+import { injectable, inject } from 'tsyringe'
 
 type CriarPapelDTO = {
   nome: string
   idade: number
 }
 
-export class CriarUsoDeCasoDePapel {
-  constructor(private repositorioDePapeis: RepositorioDePapeis) {}
+@injectable()
+export class CriarCasoDeUsoDePapel {
+  constructor(
+    @inject('RepositorioDePapeis') private repositorioDePapeis: IRepositorioDePapeis,
+  ) {}
   async execute({ nome, idade }: CriarPapelDTO): Promise<Papel> {
     const papelJaExiste = await this.repositorioDePapeis.encontrarPeloNome(nome)
     if (papelJaExiste) {

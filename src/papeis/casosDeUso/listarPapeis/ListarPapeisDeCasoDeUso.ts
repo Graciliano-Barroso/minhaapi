@@ -1,15 +1,19 @@
 import {
+  IRepositorioDePapeis,
   PropriedadesDePaginacaoDePapeis,
-  RepositorioDePapeis,
-} from '@papeis/repositorios/RepositorioDePapeis'
+} from '@papeis/repositorios/IRepositorioDePapeis'
+import { inject, injectable } from 'tsyringe'
 
 type ParametrosDeListaDePapeisDeCasoDeUso = {
   pagina: number
   limite: number
 }
 
+@injectable()
 export class ListarPapeisDeCasoDeUso {
-  constructor(private repositorioDePapeis: RepositorioDePapeis) {}
+  constructor(
+    @inject('RepositorioDePapeis') private repositorioDePapeis: IRepositorioDePapeis,
+  ) {}
 
   async execute({
     limite,

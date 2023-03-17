@@ -1,12 +1,17 @@
+import { inject, injectable } from 'tsyringe'
 import { ErroDeAplicativo } from '@compartilhado/erros/ErroDeAplicativo'
-import { RepositorioDePapeis } from '@papeis/repositorios/RepositorioDePapeis'
+import { IRepositorioDePapeis } from '@papeis/repositorios/IRepositorioDePapeis'
 
 type ParametrosExcluirPapel = {
   id: string
 }
 
+@injectable()
 export class CasoDeUsoDeExcluirPapel {
-  constructor(private repositorioDePapeis: RepositorioDePapeis) {}
+  constructor(
+    @inject('RepositorioDePapeis')
+    private repositorioDePapeis: IRepositorioDePapeis,
+  ) {}
   async execute({ id }: ParametrosExcluirPapel): Promise<void> {
     const papel = await this.repositorioDePapeis.encontrarPeloId(id)
     if (!papel) {

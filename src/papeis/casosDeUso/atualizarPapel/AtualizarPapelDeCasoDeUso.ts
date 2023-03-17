@@ -1,6 +1,7 @@
+import { inject, injectable } from 'tsyringe'
 import { ErroDeAplicativo } from '@compartilhado/erros/ErroDeAplicativo'
 import { Papel } from '@papeis/entidades/Papel'
-import { RepositorioDePapeis } from '@papeis/repositorios/RepositorioDePapeis'
+import { IRepositorioDePapeis } from '@papeis/repositorios/IRepositorioDePapeis'
 
 type AtualizarPapelDTO = {
   id: string
@@ -8,8 +9,12 @@ type AtualizarPapelDTO = {
   idade: number
 }
 
+@injectable()
 export class AtualizarPapelDeCasoDeUso {
-  constructor(private repositorioDePapeis: RepositorioDePapeis) {}
+  constructor(
+    @inject('RepositorioDePapeis')
+    private repositorioDePapeis: IRepositorioDePapeis,
+  ) {}
   async execute({ id, nome }: AtualizarPapelDTO): Promise<Papel> {
     const papel = await this.repositorioDePapeis.encontrarPeloId(id)
     if (!papel) {
