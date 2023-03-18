@@ -10,7 +10,7 @@ type AtualizarPapelDTO = {
 }
 
 @injectable()
-export class AtualizarPapelDeCasoDeUso {
+export class CasoDeUsoAtualizarPapel {
   constructor(
     @inject('RepositorioDePapeis')
     private repositorioDePapeis: IRepositorioDePapeis,

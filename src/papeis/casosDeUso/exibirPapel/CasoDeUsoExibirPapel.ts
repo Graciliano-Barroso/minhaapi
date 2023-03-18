@@ -1,14 +1,14 @@
+import { inject, injectable } from 'tsyringe'
 import { ErroDeAplicativo } from '@compartilhado/erros/ErroDeAplicativo'
 import { Papel } from '@papeis/entidades/Papel'
 import { IRepositorioDePapeis } from '@papeis/repositorios/IRepositorioDePapeis'
-import { inject, injectable } from 'tsyringe'
 
 type ParametrosExibirPapel = {
   id: string
 }
 
 @injectable()
-export class CasoDeUsoDeExibirPapel {
+export class CasoDeUsoExibirPapel {
   constructor(
     @inject('RepositorioDePapeis')
     private repositorioDePapeis: IRepositorioDePapeis,

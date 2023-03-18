@@ -6,7 +6,7 @@ import { errors } from 'celebrate'
 import { rotas } from './rotas/indice'
 import { ErroDeAplicativo } from '@compartilhado/erros/ErroDeAplicativo'
 import swaggerFile from '../../swagger.json'
-import '@compartilhado/recipiente'
+import '@compartilhado/recipiente/indice'
 
 const app = express()
 app.use(cors())

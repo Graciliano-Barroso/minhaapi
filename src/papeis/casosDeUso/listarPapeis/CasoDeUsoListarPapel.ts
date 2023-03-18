@@ -1,8 +1,8 @@
+import { inject, injectable } from 'tsyringe'
 import {
   IRepositorioDePapeis,
   PropriedadesDePaginacaoDePapeis,
 } from '@papeis/repositorios/IRepositorioDePapeis'
-import { inject, injectable } from 'tsyringe'
 
 type ParametrosDeListaDePapeisDeCasoDeUso = {
   pagina: number
@@ -10,9 +10,10 @@ type ParametrosDeListaDePapeisDeCasoDeUso = {
 }
 
 @injectable()
-export class ListarPapeisDeCasoDeUso {
+export class CasoDeUsoListarPapel {
   constructor(
-    @inject('RepositorioDePapeis') private repositorioDePapeis: IRepositorioDePapeis,
+    @inject('RepositorioDePapeis')
+    private repositorioDePapeis: IRepositorioDePapeis,
   ) {}
 
   async execute({
