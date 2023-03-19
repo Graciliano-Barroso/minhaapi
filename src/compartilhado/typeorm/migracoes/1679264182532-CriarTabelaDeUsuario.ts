@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
-export class CriarTabelaDePapeis1678368552706 implements MigrationInterface {
+export class CriarTabelaDeUsuario1679264182532 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'papeis',
+        name: 'usuarios',
         columns: [
           {
             name: 'id',
@@ -14,12 +14,30 @@ export class CriarTabelaDePapeis1678368552706 implements MigrationInterface {
           {
             name: 'nome',
             type: 'string',
-            isPrimary: true,
           },
           {
             name: 'idade',
             type: 'number',
             isPrimary: true,
+          },
+          {
+            name: 'email',
+            type: 'string',
+            isPrimary: true,
+          },
+          {
+            name: 'senha',
+            type: 'string',
+          },
+          {
+            name: 'avatar',
+            type: 'string',
+            isNullable: true,
+          },
+          {
+            name: 'isAdmin',
+            type: 'boolean',
+            default: false,
           },
           {
             name: 'criado_em',
@@ -32,6 +50,6 @@ export class CriarTabelaDePapeis1678368552706 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('papeis')
+    await queryRunner.dropTable('usuarios')
   }
 }
