@@ -14,12 +14,12 @@ export class CriarTabelaDePapeis1678368552706 implements MigrationInterface {
           {
             name: 'nome',
             type: 'string',
-            isPrimary: true,
+            isUnique: true,
           },
           {
             name: 'idade',
             type: 'number',
-            isPrimary: true,
+            isUnique: false,
           },
           {
             name: 'criado_em',

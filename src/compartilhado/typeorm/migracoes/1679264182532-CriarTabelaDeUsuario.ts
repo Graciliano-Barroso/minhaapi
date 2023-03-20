@@ -18,12 +18,11 @@ export class CriarTabelaDeUsuario1679264182532 implements MigrationInterface {
           {
             name: 'idade',
             type: 'number',
-            isPrimary: true,
           },
           {
             name: 'email',
             type: 'string',
-            isPrimary: true,
+            isUnique: true,
           },
           {
             name: 'senha',
@@ -53,3 +52,27 @@ export class CriarTabelaDeUsuario1679264182532 implements MigrationInterface {
     await queryRunner.dropTable('usuarios')
   }
 }
+
+// AdicionarPapelIdNaTabelaUsuarios
+
+// await queryRunner.addColumn(
+//       'usuarios',
+//       new TableColumn({
+//         name: 'papelId',
+//         type: 'uuid',
+//         isNullable: true,
+//       }),
+//     )
+//     await queryRunner.createForeignKey(
+//       'usuarios',
+//       new TableForeignKey({
+//         name: 'UsuariosPapeis',
+//         columnNames: ['papelId'],
+//         referencedTableName: 'papeis',
+//         referencedColumnNames: ['id'],
+//         onDelete: 'SET NULL',
+//       }),
+//     )
+
+// await queryRunner.dropForeignKey('usuarios', 'UsuariosPapeis')
+// await queryRunner.dropColumn('usuarios', 'papelId')
