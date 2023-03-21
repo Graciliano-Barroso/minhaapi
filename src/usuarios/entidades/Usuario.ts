@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm'
+import { Papel } from '@papeis/entidades/Papel'
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
 import { v4 as uuidv4 } from 'uuid'
 
 @Entity('usuarios')
@@ -23,6 +24,11 @@ export class Usuario {
 
   @Column()
   avatar?: string
+
+  @ManyToOne(() => Papel, {
+    cascade: true,
+  })
+  papel: Papel
 
   @CreateDateColumn()
   criado_em: Date
