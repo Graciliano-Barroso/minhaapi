@@ -33,5 +33,6 @@ export interface IRepositorioDeUsuarios {
   }: PaginarParametros): Promise<PropriedadesDePaginacaoDeUsuario>
   encontrarPeloId(id: string): Promise<Usuario | null>
   encontrarPeloNome(nome: string): Promise<Usuario | null>
+  encontrarPeloEmail(email: string): Promise<Usuario | null>
   excluir(usuario: Usuario): Promise<void>
 }
