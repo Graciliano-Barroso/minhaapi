@@ -7,14 +7,14 @@ import { ControladorExibirPapel } from '@papeis/casosDeUso/exibirPapel/Controlad
 import { ControladorAtualizarPapel } from '@papeis/casosDeUso/atualizarPapel/ControladorAtualizarPapel'
 import { ControladorExcluirPapel } from '@papeis/casosDeUso/excluirPapel/ControladorExcluirPapel'
 
-const papeisDoRoteador = Router()
+const roteadorDePapeis = Router()
 const controladorCriarPapel = container.resolve(ControladorCriarPapel)
 const controladorListarPapel = container.resolve(ControladorListarPapel)
 const controladorExibirPapel = container.resolve(ControladorExibirPapel)
 const controladorAtualizarPapel = container.resolve(ControladorAtualizarPapel)
 const controladorExcluirPapel = container.resolve(ControladorExcluirPapel)
 
-papeisDoRoteador.post(
+roteadorDePapeis.post(
   '/',
   celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -27,7 +27,7 @@ papeisDoRoteador.post(
   },
 )
 
-papeisDoRoteador.get(
+roteadorDePapeis.get(
   '/',
   celebrate({
     [Segments.QUERY]: Joi.object().keys({
@@ -40,7 +40,7 @@ papeisDoRoteador.get(
   },
 )
 
-papeisDoRoteador.get(
+roteadorDePapeis.get(
   '/:id',
   celebrate({
     [Segments.PARAMS]: Joi.object().keys({
@@ -52,7 +52,7 @@ papeisDoRoteador.get(
   },
 )
 
-papeisDoRoteador.put(
+roteadorDePapeis.put(
   '/:id',
   celebrate({
     [Segments.PARAMS]: Joi.object().keys({
@@ -68,7 +68,7 @@ papeisDoRoteador.put(
   },
 )
 
-papeisDoRoteador.delete(
+roteadorDePapeis.delete(
   '/:id',
   celebrate({
     [Segments.PARAMS]: Joi.object().keys({
@@ -80,4 +80,4 @@ papeisDoRoteador.delete(
   },
 )
 
-export { papeisDoRoteador }
+export { roteadorDePapeis }
