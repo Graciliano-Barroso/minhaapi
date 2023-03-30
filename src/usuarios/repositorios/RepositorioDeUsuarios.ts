@@ -8,7 +8,7 @@ import {
   PropriedadesDePaginacaoDeUsuario,
 } from './IRepositorioDeUsuarios'
 
-export class RepositorioDeUsuario implements IRepositorioDeUsuarios {
+export class RepositorioDeUsuarios implements IRepositorioDeUsuarios {
   private repositorio: Repository<Usuario>
 
   constructor() {

@@ -15,9 +15,10 @@ type CriarUsuarioDTO = {
 }
 
 @injectable()
-export class CasoDeUsoCriarUsuario {
+export class CasoDeUsoCriarUsuarios {
   constructor(
-    @inject('RepositorioDeUsuario') private repositorioDeUsuario: IRepositorioDeUsuarios,
+    @inject('RepositorioDeUsuarios')
+    private repositorioDeUsuarios: IRepositorioDeUsuarios,
     @inject('RepositorioDePapeis') private repositorioDePapeis: IRepositorioDePapeis,
   ) {}
 
@@ -29,7 +30,7 @@ export class CasoDeUsoCriarUsuario {
     isAdmin,
     papelId,
   }: CriarUsuarioDTO): Promise<Usuario> {
-    const existeEmail = await this.repositorioDeUsuario.encontrarPeloEmail(email)
+    const existeEmail = await this.repositorioDeUsuarios.encontrarPeloEmail(email)
     if (existeEmail) {
       throw new ErroDeAplicativo('O endereço de e-mail já está em uso')
     }
@@ -38,7 +39,7 @@ export class CasoDeUsoCriarUsuario {
       throw new ErroDeAplicativo('Papel não encontrado', 404)
     }
     const senhaComHash = await hash(senha, 10)
-    const usuario = await this.repositorioDeUsuario.criar({
+    const usuario = await this.repositorioDeUsuarios.criar({
       nome,
       idade,
       email,

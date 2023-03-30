@@ -1,10 +1,12 @@
 import { ControladorCriarUsuario } from '@usuarios/casosDeUso/criarUsuario/ControladorCriarUsuario'
+import { ControladorListarUsuarios } from '@usuarios/casosDeUso/listarUsuario/ControladorListarUsuario'
 import { celebrate, Joi, Segments } from 'celebrate'
 import { Router } from 'express'
 import { container } from 'tsyringe'
 
 const roteadorDeUsuarios = Router()
 const controladorCriarUsuario = container.resolve(ControladorCriarUsuario)
+const controladorListarUsuarios = container.resolve(ControladorListarUsuarios)
 
 roteadorDeUsuarios.post(
   '/',
@@ -19,7 +21,20 @@ roteadorDeUsuarios.post(
     },
   }),
   (request, response) => {
-    return controladorCriarUsuario.handle(request, response)
+    return controladorCriarUsuario.executar(request, response)
+  },
+)
+
+roteadorDeUsuarios.get(
+  '/',
+  celebrate({
+    [Segments.QUERY]: {
+      page: Joi.number(),
+      limit: Joi.number(),
+    },
+  }),
+  (request, response) => {
+    return controladorListarUsuarios.executar(request, response)
   },
 )
 
