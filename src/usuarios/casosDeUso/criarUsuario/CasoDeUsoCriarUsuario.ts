@@ -15,7 +15,7 @@ type CriarUsuarioDTO = {
 }
 
 @injectable()
-export class CasoDeUsoCriarUsuarios {
+export class CasoDeUsoCriarUsuario {
   constructor(
     @inject('RepositorioDeUsuarios')
     private repositorioDeUsuarios: IRepositorioDeUsuarios,

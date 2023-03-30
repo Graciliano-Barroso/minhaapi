@@ -1,3 +1,4 @@
+import { instanceToInstance } from 'class-transformer'
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 import { CasoDeUsoListarUsuarios } from './CasoDeUsoListarUsuario'
@@ -17,6 +18,6 @@ export class ControladorListarUsuarios {
       pagina,
       limite,
     })
-    return response.json(usuarios)
+    return response.json(instanceToInstance(usuarios))
   }
 }

@@ -1,4 +1,5 @@
 import { Papel } from '@papeis/entidades/Papel'
+import { Exclude } from 'class-transformer'
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -17,6 +18,7 @@ export class Usuario {
   email: string
 
   @Column()
+  @Exclude()
   senha: string
 
   @Column()
