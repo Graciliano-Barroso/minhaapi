@@ -1,3 +1,4 @@
+import { heAutenticado } from '@compartilhado/http/middlewares/heAutenticado'
 import { ControladorCriarLogin } from '@usuarios/casosDeUso/criarLogin/ControladorCriarLogin'
 import { ControladorCriarUsuario } from '@usuarios/casosDeUso/criarUsuario/ControladorCriarUsuario'
 import { ControladorListarUsuarios } from '@usuarios/casosDeUso/listarUsuario/ControladorListarUsuario'
@@ -12,6 +13,7 @@ const controladorCriarLogin = container.resolve(ControladorCriarLogin)
 
 roteadorDeUsuarios.post(
   '/',
+  heAutenticado,
   celebrate({
     [Segments.BODY]: {
       nome: Joi.string().required(),
@@ -29,6 +31,7 @@ roteadorDeUsuarios.post(
 
 roteadorDeUsuarios.get(
   '/',
+  heAutenticado,
   celebrate({
     [Segments.QUERY]: {
       page: Joi.number(),

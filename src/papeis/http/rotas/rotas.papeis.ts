@@ -6,6 +6,7 @@ import { ControladorListarPapel } from '@papeis/casosDeUso/listarPapeis/Controla
 import { ControladorExibirPapel } from '@papeis/casosDeUso/exibirPapel/ControladorExibirPapel'
 import { ControladorAtualizarPapel } from '@papeis/casosDeUso/atualizarPapel/ControladorAtualizarPapel'
 import { ControladorExcluirPapel } from '@papeis/casosDeUso/excluirPapel/ControladorExcluirPapel'
+import { heAutenticado } from '@compartilhado/http/middlewares/heAutenticado'
 
 const roteadorDePapeis = Router()
 const controladorCriarPapel = container.resolve(ControladorCriarPapel)
@@ -13,6 +14,8 @@ const controladorListarPapel = container.resolve(ControladorListarPapel)
 const controladorExibirPapel = container.resolve(ControladorExibirPapel)
 const controladorAtualizarPapel = container.resolve(ControladorAtualizarPapel)
 const controladorExcluirPapel = container.resolve(ControladorExcluirPapel)
+
+roteadorDePapeis.use(heAutenticado)
 
 roteadorDePapeis.post(
   '/',
