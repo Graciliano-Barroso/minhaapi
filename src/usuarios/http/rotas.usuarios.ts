@@ -1,3 +1,4 @@
+import { ControladorCriarLogin } from '@usuarios/casosDeUso/criarLogin/ControladorCriarLogin'
 import { ControladorCriarUsuario } from '@usuarios/casosDeUso/criarUsuario/ControladorCriarUsuario'
 import { ControladorListarUsuarios } from '@usuarios/casosDeUso/listarUsuario/ControladorListarUsuario'
 import { celebrate, Joi, Segments } from 'celebrate'
@@ -7,6 +8,7 @@ import { container } from 'tsyringe'
 const roteadorDeUsuarios = Router()
 const controladorCriarUsuario = container.resolve(ControladorCriarUsuario)
 const controladorListarUsuarios = container.resolve(ControladorListarUsuarios)
+const controladorCriarLogin = container.resolve(ControladorCriarLogin)
 
 roteadorDeUsuarios.post(
   '/',
@@ -35,6 +37,19 @@ roteadorDeUsuarios.get(
   }),
   (request, response) => {
     return controladorListarUsuarios.executar(request, response)
+  },
+)
+
+roteadorDeUsuarios.post(
+  '/login',
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().email().required(),
+      senha: Joi.string().required(),
+    },
+  }),
+  (request, response) => {
+    return controladorCriarLogin.executar(request, response)
   },
 )
 

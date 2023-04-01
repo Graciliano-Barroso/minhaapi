@@ -1,5 +1,5 @@
-import { roteadorDePapeis } from '@papeis/http/rotas/papeis.rotas'
-import { roteadorDeUsuarios } from '@usuarios/http/usuarios.rotas'
+import { roteadorDePapeis } from '@papeis/http/rotas/rotas.papeis'
+import { roteadorDeUsuarios } from '@usuarios/http/rotas.usuarios'
 import { Router } from 'express'
 
 const rotas = Router()

@@ -1,3 +1,4 @@
+import { ControladorCriarLogin } from '@usuarios/casosDeUso/criarLogin/ControladorCriarLogin'
 import { ControladorCriarUsuario } from '@usuarios/casosDeUso/criarUsuario/ControladorCriarUsuario'
 import { ControladorListarUsuarios } from '@usuarios/casosDeUso/listarUsuario/ControladorListarUsuario'
 import { IRepositorioDeUsuarios } from '@usuarios/repositorios/IRepositorioDeUsuarios'
@@ -11,3 +12,4 @@ container.registerSingleton<IRepositorioDeUsuarios>(
 
 container.registerSingleton('ControladorCriarUsuario', ControladorCriarUsuario)
 container.registerSingleton('ControladorListarUsuarios', ControladorListarUsuarios)
+container.registerSingleton('ControladorCriarLogin', ControladorCriarLogin)
