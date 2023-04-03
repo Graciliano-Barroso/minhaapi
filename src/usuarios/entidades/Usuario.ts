@@ -1,5 +1,5 @@
 import { Papel } from '@papeis/entidades/Papel'
-import { Exclude } from 'class-transformer'
+import { Exclude, Expose } from 'class-transformer'
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -34,6 +34,14 @@ export class Usuario {
 
   @CreateDateColumn()
   criado_em: Date
+
+  @Expose({ name: 'avatar_url' })
+  getAvatarUrl(): string | null {
+    if (!this.avatar) {
+      return null
+    }
+    return `${process.env.AVATAR_URL}/${this.avatar}`
+  }
 
   constructor() {
     if (!this.id) {
