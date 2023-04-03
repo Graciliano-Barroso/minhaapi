@@ -22,7 +22,7 @@ roteadorDePapeis.post(
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       nome: Joi.string().required(),
-      idade: Joi.number().integer(),
+      idade: Joi.number().integer().required(),
     }),
   }),
   (request, response) => {
@@ -63,7 +63,7 @@ roteadorDePapeis.put(
     }),
     [Segments.BODY]: Joi.object().keys({
       nome: Joi.string().required(),
-      idade: Joi.number().integer(),
+      idade: Joi.number().integer().required(),
     }),
   }),
   (request, response) => {

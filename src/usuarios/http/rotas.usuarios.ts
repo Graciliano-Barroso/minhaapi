@@ -17,7 +17,7 @@ roteadorDeUsuarios.post(
   celebrate({
     [Segments.BODY]: {
       nome: Joi.string().required(),
-      idade: Joi.number().required(),
+      idade: Joi.number().integer().required(),
       email: Joi.string().email().required(),
       senha: Joi.string().required(),
       isAdmin: Joi.boolean().required(),
