@@ -28,7 +28,7 @@ export class CasoDeUsoCarregarAvatar {
     }
     if (idUsuario.avatar) {
       const caminhoArquivoAvatarUsuario = path.join(
-        carregarConfig.diretorio,
+        carregarConfig.directory,
         idUsuario.avatar,
       )
       const existeAquivoAvatarUsuario = await fs.promises.stat(

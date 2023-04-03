@@ -1,15 +1,20 @@
+import { Router } from 'express'
+import { celebrate, Joi, Segments } from 'celebrate'
+import { container } from 'tsyringe'
+import multer from 'multer'
 import { heAutenticado } from '@compartilhado/http/middlewares/heAutenticado'
 import { ControladorCriarLogin } from '@usuarios/casosDeUso/criarLogin/ControladorCriarLogin'
 import { ControladorCriarUsuario } from '@usuarios/casosDeUso/criarUsuario/ControladorCriarUsuario'
 import { ControladorListarUsuarios } from '@usuarios/casosDeUso/listarUsuario/ControladorListarUsuario'
-import { celebrate, Joi, Segments } from 'celebrate'
-import { Router } from 'express'
-import { container } from 'tsyringe'
+import { ControladorCarregarAvatar } from '@usuarios/casosDeUso/carregarAvatar/ControladorCarregarAvatar'
+import carregarConfig from '@config/carregar'
 
 const roteadorDeUsuarios = Router()
 const controladorCriarUsuario = container.resolve(ControladorCriarUsuario)
 const controladorListarUsuarios = container.resolve(ControladorListarUsuarios)
 const controladorCriarLogin = container.resolve(ControladorCriarLogin)
+const controladorCarregarAvatar = container.resolve(ControladorCarregarAvatar)
+const carregar = multer(carregarConfig)
 
 roteadorDeUsuarios.post(
   '/',
@@ -53,6 +58,15 @@ roteadorDeUsuarios.post(
   }),
   (request, response) => {
     return controladorCriarLogin.executar(request, response)
+  },
+)
+
+roteadorDeUsuarios.patch(
+  '/avatar',
+  heAutenticado,
+  carregar.single('avatar'),
+  (request, response) => {
+    return controladorCarregarAvatar.executar(request, response)
   },
 )
 
