@@ -8,12 +8,14 @@ import { ControladorCriarUsuario } from '@usuarios/casosDeUso/criarUsuario/Contr
 import { ControladorListarUsuarios } from '@usuarios/casosDeUso/listarUsuario/ControladorListarUsuario'
 import { ControladorCarregarAvatar } from '@usuarios/casosDeUso/carregarAvatar/ControladorCarregarAvatar'
 import carregarConfig from '@config/carregar'
+import { ControladorMostrarPerfil } from '@usuarios/casosDeUso/mostrarPerfil/ControladorMostrarPerfil'
 
 const roteadorDeUsuarios = Router()
 const controladorCriarUsuario = container.resolve(ControladorCriarUsuario)
 const controladorListarUsuarios = container.resolve(ControladorListarUsuarios)
 const controladorCriarLogin = container.resolve(ControladorCriarLogin)
 const controladorCarregarAvatar = container.resolve(ControladorCarregarAvatar)
+const controladorMostrarPerfil = container.resolve(ControladorMostrarPerfil)
 const carregar = multer(carregarConfig)
 
 roteadorDeUsuarios.post(
@@ -69,5 +71,9 @@ roteadorDeUsuarios.patch(
     return controladorCarregarAvatar.executar(request, response)
   },
 )
+
+roteadorDeUsuarios.get('/perfil', heAutenticado, (request, response) => {
+  return controladorMostrarPerfil.executar(request, response)
+})
 
 export { roteadorDeUsuarios }
