@@ -1,3 +1,4 @@
+import { ControladorAtualizarPerfil } from '@usuarios/casosDeUso/atualizarPerfil/ControladorAtualizarPerfil'
 import { ControladorCarregarAvatar } from '@usuarios/casosDeUso/carregarAvatar/ControladorCarregarAvatar'
 import { ControladorCriarLogin } from '@usuarios/casosDeUso/criarLogin/ControladorCriarLogin'
 import { ControladorCriarUsuario } from '@usuarios/casosDeUso/criarUsuario/ControladorCriarUsuario'
@@ -17,3 +18,4 @@ container.registerSingleton('ControladorListarUsuarios', ControladorListarUsuari
 container.registerSingleton('ControladorCriarLogin', ControladorCriarLogin)
 container.registerSingleton('ControladorCarregarAvatar', ControladorCarregarAvatar)
 container.registerSingleton('ControladorMostrarPerfil', ControladorMostrarPerfil)
+container.registerSingleton('ControladorAtualizarPerfil', ControladorAtualizarPerfil)

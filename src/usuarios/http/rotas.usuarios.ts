@@ -9,6 +9,7 @@ import { ControladorListarUsuarios } from '@usuarios/casosDeUso/listarUsuario/Co
 import { ControladorCarregarAvatar } from '@usuarios/casosDeUso/carregarAvatar/ControladorCarregarAvatar'
 import carregarConfig from '@config/carregar'
 import { ControladorMostrarPerfil } from '@usuarios/casosDeUso/mostrarPerfil/ControladorMostrarPerfil'
+import { ControladorAtualizarPerfil } from '@usuarios/casosDeUso/atualizarPerfil/ControladorAtualizarPerfil'
 
 const roteadorDeUsuarios = Router()
 const controladorCriarUsuario = container.resolve(ControladorCriarUsuario)
@@ -16,6 +17,7 @@ const controladorListarUsuarios = container.resolve(ControladorListarUsuarios)
 const controladorCriarLogin = container.resolve(ControladorCriarLogin)
 const controladorCarregarAvatar = container.resolve(ControladorCarregarAvatar)
 const controladorMostrarPerfil = container.resolve(ControladorMostrarPerfil)
+const controladorAtualizarPerfil = container.resolve(ControladorAtualizarPerfil)
 const carregar = multer(carregarConfig)
 
 roteadorDeUsuarios.post(
@@ -75,5 +77,26 @@ roteadorDeUsuarios.patch(
 roteadorDeUsuarios.get('/perfil', heAutenticado, (request, response) => {
   return controladorMostrarPerfil.executar(request, response)
 })
+
+roteadorDeUsuarios.put(
+  '/perfil',
+  heAutenticado,
+  celebrate({
+    [Segments.BODY]: {
+      nome: Joi.string().required(),
+      idade: Joi.number().integer().required(),
+      email: Joi.string().email().required(),
+      senha_antiga: Joi.string(),
+      senha: Joi.string().optional(),
+      senha_confirmacao: Joi.string().valid(Joi.ref('senha')).when('senha', {
+        is: Joi.exist(),
+        then: Joi.required(),
+      }),
+    },
+  }),
+  (request, response) => {
+    return controladorAtualizarPerfil.executar(request, response)
+  },
+)
 
 export { roteadorDeUsuarios }

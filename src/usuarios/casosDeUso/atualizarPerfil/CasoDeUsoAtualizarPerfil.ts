@@ -1,4 +1,3 @@
-import { IRepositorioDePapeis } from '@papeis/repositorios/IRepositorioDePapeis'
 import { IRepositorioDeUsuarios } from '@usuarios/repositorios/IRepositorioDeUsuarios'
 import { inject, injectable } from 'tsyringe'
 import { Usuario } from '@usuarios/entidades/Usuario'
