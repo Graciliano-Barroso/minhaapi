@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
-export class CriarTabelaDeUsuario1679264182532 implements MigrationInterface {
+export class CriarTabelaTokensAtualizacao1681145627128 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'usuarios',
+        name: 'tokens_atualizacao',
         columns: [
           {
             name: 'id',
@@ -12,31 +12,22 @@ export class CriarTabelaDeUsuario1679264182532 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'nome',
+            name: 'usuario_id',
             type: 'string',
           },
           {
-            name: 'idade',
-            type: 'number',
-          },
-          {
-            name: 'email',
+            name: 'token',
             type: 'string',
             isUnique: true,
           },
           {
-            name: 'senha',
-            type: 'string',
-          },
-          {
-            name: 'avatar',
-            type: 'string',
-            isNullable: true,
-          },
-          {
-            name: 'isAdmin',
+            name: 'valido',
             type: 'boolean',
-            default: false,
+            default: true,
+          },
+          {
+            name: 'expira',
+            type: 'timestamp',
           },
           {
             name: 'criado_em',
@@ -44,11 +35,21 @@ export class CriarTabelaDeUsuario1679264182532 implements MigrationInterface {
             default: 'CURRENT_TIMESTAMP',
           },
         ],
+        foreignKeys: [
+          {
+            name: 'TokensAtualizacao',
+            referencedTableName: 'usuarios',
+            referencedColumnNames: ['id'],
+            columnNames: ['usuario_id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+        ],
       }),
     )
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('usuarios')
+    await queryRunner.dropTable('tokens_atualizacao')
   }
 }
