@@ -275,6 +275,104 @@
           }
         }
       }
+    },
+    "/usuarios": {
+      "post": {
+        "tags": ["Usuários"],
+        "summary": "Criar um usuario",
+        "description":"Criar um novo usuario",
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "idade": {
+                    "type": "number"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "senha": {
+                    "type": "string"
+                  },
+                  "isAdmin": {
+                    "type": "boolean"
+                  },
+                  "papelId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuario criado.",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                    "type": "string"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "idade": {
+                      "type": "number"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "senha": {
+                      "type": "string"
+                    },
+                    "isAdmin": {
+                      "type": "boolean"
+                    },
+                    "papelId": {
+                      "type": "string"
+                    },
+                    "criado_em": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "35fec359-e00b-4ed3-a660-00a79caa0ae3",
+                    "nome": "Stênio B Moraes",
+                    "idade": 39,
+                    "email": "stenio@mail.com",
+                    "isAdmin": false,
+                    "papel": {
+                      "id": "4c5c5fad-9c26-4c7c-9b8b-83834cde3253",
+                      "nome": "T.I.",
+                      "idade": 49,
+                      "criado_em": "2023-04-03T03:42:38.000Z"
+                    },
+                    "criado_em": "2023-04-09T19:56:45.000Z",
+                    "avatar_url": null
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Endereço de email está em uso."
+          },
+          "401": {
+            "description": "Autenticação invalida do token."
+          },
+          "404": {
+            "description": "Papel não encontrado."
+          }
+        }
+      }
     }
   }
 }
