@@ -59,6 +59,9 @@
           },
           "400": {
             "description": "O papel já existe."
+          },
+          "401": {
+            "description": "Token de autenticação inválido."
           }
         }
       },
@@ -116,6 +119,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Token de autenticação inválido."
           }
         }
       }
@@ -188,6 +194,9 @@
           "400": {
             "description": "Requisição inválida."
           },
+          "401": {
+            "description": "Token de autenticação inválido."
+          },
           "404": {
             "description": "Papel não encontrado."
           }
@@ -253,6 +262,9 @@
           "400":{
             "description": "Requisição inválida."
           },
+          "401": {
+            "description": "Token de autenticação inválido."
+          },
           "404": {
             "description": "Papel não encontrado."
           }
@@ -277,6 +289,9 @@
         "responses": {
           "204": {
             "description": "Sem conteúdo."
+          },
+          "401": {
+            "description": "Token de autenticação inválido."
           },
           "400":{
             "description": "Requisição inválida."
@@ -459,6 +474,322 @@
           },
           "401":{
             "description": "Invalid authentication token."
+          }
+        }
+      }
+    },
+    "/usuarios/login": {
+      "post": {
+        "tags": ["Usuários"],
+        "summary": "Usuário autenticado",
+        "description": "Usuário autenticado na aplicação",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "gracilianobm@gmail.com",
+                  "password": "123456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "isAdmin": {
+                          "type": "boolean"
+                        },
+                        "avatar": {
+                          "type": "string"
+                        },
+                        "avatar_url": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "datetime"
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "user": {
+                    "id": "3f33cb96-28ef-45f5-b6f4-dcadf80c72d0",
+                    "name": "Desenvolvedor Graciliano",
+                    "email": "gracilianobm@gmail.com",
+                    "isAdmin": true,
+                    "avatar": "9fe542a6a59c65f08eac_avatar01.jpeg",
+                    "created_at": "2010-06-18T19:17:09.000Z",
+                    "avatar_url": "http://localhost:3000/files/9fe542a6a59c65f08eac_avatar01.jpeg"
+                  },
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU2ODUzMzYsImV4cCI6MTY1NTc3MTczNiwic3ViIjoiM2YzM2NiOTYtMjhlZi00NWY1LWI2ZjQtZGNhZGY4MGM3MmQwIn0.OF3gjxJhOW4xa1i5Uhh_qRgo-SyllMRXroYO_ddFpQM"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Pedido ruim."
+          },
+          "401": {
+            "description": "Combinação incorreta de e-mail e senha."
+          }
+        }
+      }
+    },
+    "/usuarios/perfil": {
+      "put": {
+        "tags": ["Usuários"],
+        "summary": "Atualizar perfil",
+        "description": "O usuário atualiza o perfil",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "password_confirmation": {
+                    "type": "string"
+                  },
+                  "old_password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Aluizio Developer",
+                  "email": "aluiziodeveloper@gmail.com",
+                  "password": "123456",
+                  "password_confirmation": "123456",
+                  "old_password": "1234"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "isAdmin": {
+                      "type": "boolean"
+                    },
+                    "avatar": {
+                      "type": "string"
+                    },
+                    "avatar_url": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "datetime"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "3f33cb96-28ef-45f5-b6f4-dcadf80c72d0",
+                  "name": "Desenvolvedor Graciliano",
+                  "email": "gracilianobm@gmail.com",
+                  "isAdmin": true,
+                  "avatar": "9fe542a6a59c65f08eac_avatar01.jpeg",
+                  "created_at": "2010-06-18T19:17:09.000Z",
+                  "avatar_url": "http://localhost:3000/files/9fe542a6a59c65f08eac_avatar01.jpeg"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Pedido ruim. A senha antiga é necessária. Senha antiga não confere. Já existe um usuário com este e-mail."
+          },
+          "401": {
+            "description": "Token de autenticação inválido."
+          },
+          "404": {
+            "description": "Usuário não encontrado."
+          }
+        }
+      },
+      "get": {
+        "tags": ["Usuários"],
+        "summary": "Mostrar perfil",
+        "description": "O usuário mostra seu próprio perfil",
+        "responses": {
+          "200": {
+            "description": "Sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "isAdmin": {
+                      "type": "boolean"
+                    },
+                    "avatar": {
+                      "type": "string"
+                    },
+                    "avatar_url": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "datetime"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "3f33cb96-28ef-45f5-b6f4-dcadf80c72d0",
+                  "name": "Desenvolvedor Graciliano",
+                  "email": "gracilianobm@gmail.com",
+                  "isAdmin": true,
+                  "avatar": "9fe542a6a59c65f08eac_avatar01.jpeg",
+                  "created_at": "2010-06-18T19:17:09.000Z",
+                  "avatar_url": "http://localhost:3000/files/9fe542a6a59c65f08eac_avatar01.jpeg"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Token de autenticação inválido."
+          },
+          "404": {
+            "description": "Usuário não encontrado."
+
+          }
+        }
+      }
+    },
+    "/usuarios/avatar": {
+      "patch": {
+        "tags": ["Usuários"],
+        "summary": "Atualizar imagem do avatar",
+        "description": "O usuário atualiza a própria imagem de avatar.",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "isAdmin": {
+                      "type": "boolean"
+                    },
+                    "avatar": {
+                      "type": "string"
+                    },
+                    "avatar_url": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "datetime"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "3f33cb96-28ef-45f5-b6f4-dcadf80c72d0",
+                  "name": "Aluizio Developer",
+                  "email": "aluiziodeveloper@gmail.com",
+                  "isAdmin": true,
+                  "avatar": "9fe542a6a59c65f08eac_avatar01.jpeg",
+                  "created_at": "2010-06-18T19:17:09.000Z",
+                  "avatar_url": "http://localhost:3000/files/9fe542a6a59c65f08eac_avatar01.jpeg"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Pedido ruim."
+          },
+          "401": {
+            "description": "Token de autenticação inválido."
+          },
+          "404": {
+            "description": "Usuário não encontrado."
           }
         }
       }
