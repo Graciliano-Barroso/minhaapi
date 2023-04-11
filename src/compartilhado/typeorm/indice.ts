@@ -1,4 +1,5 @@
 import { Papel } from '@papeis/entidades/Papel'
+import { TokenAtualizacao } from '@usuarios/entidades/TokenAtualizacao'
 import { Usuario } from '@usuarios/entidades/Usuario'
 import { DataSource } from 'typeorm'
 import { CriarTabelaDePapeis1678368552706 } from './migracoes/1678368552706-CriarTabelaDePapeis'
@@ -9,7 +10,7 @@ import { CriarTabelaTokensAtualizacao1681145627128 } from './migracoes/168114562
 export const dataSource = new DataSource({
   type: 'sqlite',
   database: './db.sqlite',
-  entities: [Papel, Usuario],
+  entities: [Papel, Usuario, TokenAtualizacao],
   migrations: [
     CriarTabelaDePapeis1678368552706,
     CriarTabelaDeUsuario1679264182532,
