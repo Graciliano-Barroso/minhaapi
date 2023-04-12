@@ -1,6 +1,6 @@
 import { TokenAtualizacao } from '@usuarios/entidades/TokenAtualizacao'
 
-type CriarTokenAtualizacao = {
+export type CriarTokenAtualizacao = {
   usuario_id: string
   token: string
   expira: Date
