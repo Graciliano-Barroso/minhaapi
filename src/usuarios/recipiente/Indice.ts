@@ -5,12 +5,19 @@ import { ControladorCriarUsuario } from '@usuarios/casosDeUso/criarUsuario/Contr
 import { ControladorListarUsuarios } from '@usuarios/casosDeUso/listarUsuario/ControladorListarUsuario'
 import { ControladorMostrarPerfil } from '@usuarios/casosDeUso/mostrarPerfil/ControladorMostrarPerfil'
 import { IRepositorioDeUsuarios } from '@usuarios/repositorios/IRepositorioDeUsuarios'
+import { IRepositorioTokenAtualizacao } from '@usuarios/repositorios/IRepositorioTokenAtualizacao'
 import { RepositorioDeUsuarios } from '@usuarios/repositorios/RepositorioDeUsuarios'
+import { RepositorioTokenAtualizacao } from '@usuarios/repositorios/RepositorioTokenAtualizacao'
 import { container } from 'tsyringe'
 
 container.registerSingleton<IRepositorioDeUsuarios>(
   'RepositorioDeUsuarios',
   RepositorioDeUsuarios,
+)
+
+container.registerSingleton<IRepositorioTokenAtualizacao>(
+  'RepositorioTokenAtualizacao',
+  RepositorioTokenAtualizacao,
 )
 
 container.registerSingleton('ControladorCriarUsuario', ControladorCriarUsuario)

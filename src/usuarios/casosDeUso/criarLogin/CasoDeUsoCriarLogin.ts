@@ -5,6 +5,7 @@ import { ErroDeAplicativo } from '@compartilhado/erros/ErroDeAplicativo'
 import { Usuario } from '@usuarios/entidades/Usuario'
 import { IRepositorioDeUsuarios } from '@usuarios/repositorios/IRepositorioDeUsuarios'
 import { sign } from 'jsonwebtoken'
+import { IRepositorioTokenAtualizacao } from '@usuarios/repositorios/IRepositorioTokenAtualizacao'
 
 type CriarLoginDTO = {
   email: string
@@ -12,7 +13,8 @@ type CriarLoginDTO = {
 }
 type IResponse = {
   usuario: Usuario
-  token: string
+  tokenAcesso: string
+  tokenAtualizacao: string
 }
 
 @injectable()
@@ -20,6 +22,8 @@ export class CasoDeUsoCriarLogin {
   constructor(
     @inject('RepositorioDeUsuarios')
     private repositorioDeUsuarios: IRepositorioDeUsuarios,
+    @inject('RepositorioTokenAtualizacao')
+    private repositorioTokenAtualizacao: IRepositorioTokenAtualizacao,
   ) {}
 
   async execute({ email, senha }: CriarLoginDTO): Promise<IResponse> {
@@ -31,13 +35,25 @@ export class CasoDeUsoCriarLogin {
     if (!senhaConfirmada) {
       throw new ErroDeAplicativo('O endereço de e-mail ou a senha estão incorretos', 401)
     }
-    const token = sign({}, jwtConfig.jwt.secret, {
+    const tokenAcesso = sign({}, jwtConfig.jwt.secret, {
       subject: usuario.id,
       expiresIn: jwtConfig.jwt.expiresIn,
     })
+    const expira = new Date(Date.now() + jwtConfig.refreshToken.duration)
+    const tokenAtualizacao = sign({}, jwtConfig.refreshToken.secret, {
+      subject: usuario.id,
+      expiresIn: jwtConfig.refreshToken.expiresIn,
+    })
+    await this.repositorioTokenAtualizacao.criar({
+      usuario_id: usuario.id,
+      token: tokenAtualizacao,
+      expira,
+      valido: true,
+    })
     return {
       usuario,
-      token,
+      tokenAcesso,
+      tokenAtualizacao,
     }
   }
 }

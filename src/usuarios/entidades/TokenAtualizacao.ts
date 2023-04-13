@@ -18,9 +18,6 @@ export class TokenAtualizacao {
   @Column()
   expira: Date
 
-  @Column()
-  isAdmin: boolean
-
   @CreateDateColumn()
   criado_em: Date
 

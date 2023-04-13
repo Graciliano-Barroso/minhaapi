@@ -7,10 +7,12 @@ export class ControladorCriarLogin {
   async executar(request: Request, response: Response): Promise<Response> {
     const casoDeUsoCriarLogin = container.resolve(CasoDeUsoCriarLogin)
     const { email, senha } = request.body
-    const { usuario, token } = await casoDeUsoCriarLogin.execute({
+    const { usuario, tokenAcesso, tokenAtualizacao } = await casoDeUsoCriarLogin.execute({
       email,
       senha,
     })
-    return response.status(201).json(instanceToInstance({ usuario, token }))
+    return response
+      .status(201)
+      .json(instanceToInstance({ usuario, tokenAcesso, tokenAtualizacao }))
   }
 }

@@ -37,7 +37,7 @@ export class CriarTabelaTokensAtualizacao1681145627128 implements MigrationInter
         ],
         foreignKeys: [
           {
-            name: 'TokensAtualizacao',
+            name: 'TokensAtualizacaoUsuarios',
             referencedTableName: 'usuarios',
             referencedColumnNames: ['id'],
             columnNames: ['usuario_id'],
