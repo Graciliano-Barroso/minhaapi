@@ -39,10 +39,10 @@ export class CasoDeUsoCriarLogin {
       subject: usuario.id,
       expiresIn: jwtConfig.jwt.expiresIn,
     })
-    const expira = new Date(Date.now() + jwtConfig.refreshToken.duration)
-    const tokenAtualizacao = sign({}, jwtConfig.refreshToken.secret, {
+    const expira = new Date(Date.now() + jwtConfig.refreshToken.duracao)
+    const tokenAtualizacao = sign({}, jwtConfig.refreshToken.segredo, {
       subject: usuario.id,
-      expiresIn: jwtConfig.refreshToken.expiresIn,
+      expiresIn: jwtConfig.refreshToken.expiraEm,
     })
     await this.repositorioTokenAtualizacao.criar({
       usuario_id: usuario.id,
