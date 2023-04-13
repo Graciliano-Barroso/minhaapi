@@ -14,15 +14,30 @@ export const heAutenticado = (
 ) => {
   const cabecalhoAutenticacao = request.headers.authorization
   if (!cabecalhoAutenticacao) {
-    throw new ErroDeAplicativo('Falha ao ferificar o token de acesso', 401)
+    return response.status(401).json({
+      erro: true,
+      codigo: 'token.invalido',
+      mensagem: 'O token de acesso não está presente',
+    })
   }
   const token = cabecalhoAutenticacao.replace('Bearer ', '')
+  if (!token) {
+    return response.status(401).json({
+      erro: true,
+      codigo: 'token.invalido',
+      mensagem: 'O token de acesso não está presente',
+    })
+  }
   try {
     const tokenDecodificado = verify(token, autencticacaoConfig.jwt.secret as Secret)
     const { sub } = tokenDecodificado as JwtPayloadProps
     request.usuario = { id: sub }
     return next()
   } catch {
-    throw new ErroDeAplicativo('Token de autenticação inválido', 401)
+    return response.status(401).json({
+      erro: true,
+      codigo: 'token.expirado',
+      mensagem: 'O token de acesso não está presente',
+    })
   }
 }
